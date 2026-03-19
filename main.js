@@ -1,0 +1,41 @@
+/* ============================================================
+   CLUSTER DJ — main.js
+   ============================================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── 1. NAV: sombra al hacer scroll ── */
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  /* ── 2. ANIMACIONES de entrada con IntersectionObserver ── */
+  const animEls = document.querySelectorAll('.animate');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  animEls.forEach(el => observer.observe(el));
+
+  /* ── 3. SMOOTH SCROLL para los links del nav ── */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  /* ── 4. Año dinámico en el footer ── */
+  const yearEl = document.getElementById('footer-year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+});
