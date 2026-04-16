@@ -3,487 +3,167 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bolsa de Talento DJ – Cluster DJ</title>
+  <title>Bolsa de Talento – Cluster DJ</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="/img/logo_cluster_dj.png">
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* ── PAGE SPECIFIC ── */
-    .bolsa-page { padding-top: 80px; min-height: 100vh; background: var(--bg); }
-
-    .bolsa-hero {
-      background: var(--bg2);
-      border-bottom: 2px solid var(--red);
-      padding: 4rem;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 2rem; flex-wrap: wrap;
-    }
-    .bolsa-hero-text .section-label { margin-bottom: 0.5rem; }
-    .bolsa-hero-text h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      letter-spacing: 3px; line-height: 1;
-    }
-    .bolsa-hero-text p {
-      font-size: 0.9rem; color: var(--gray);
-      line-height: 1.8; max-width: 500px; margin-top: 1rem;
-    }
-    .bolsa-hero-stat {
-      text-align: center;
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 1.5rem 2.5rem;
-      background: var(--bg);
-    }
-    .bolsa-hero-stat strong {
-      display: block;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 3.5rem; color: var(--red); line-height: 1;
-    }
-    .bolsa-hero-stat span {
-      font-size: 0.65rem; color: var(--gray);
-      letter-spacing: 2px; text-transform: uppercase;
-    }
-
-    /* ── FILTERS ── */
-    .bolsa-filters {
-      padding: 2rem 4rem;
-      display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .filter-label {
-      font-size: 0.65rem; color: var(--gray);
-      letter-spacing: 2px; text-transform: uppercase;
-      margin-right: 0.5rem;
-    }
-    .filter-btn {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.15);
-      color: var(--gray);
-      padding: 0.4rem 1rem;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.65rem; letter-spacing: 2px;
-      text-transform: uppercase; cursor: pointer;
-      transition: all 0.2s;
-    }
-    .filter-btn:hover, .filter-btn.active {
-      background: var(--red); border-color: var(--red); color: var(--white);
-    }
-    .search-input {
-      background: var(--bg2);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: var(--white);
-      padding: 0.5rem 1rem;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.7rem; letter-spacing: 1px;
-      outline: none; margin-left: auto; width: 220px;
-      transition: border-color 0.2s;
-    }
+    .bolsa-page { padding-top: 100px; min-height: 100vh; background: var(--bg); }
+    .bolsa-hero { background: var(--bg2); border-bottom: 2px solid var(--red); padding: 4rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .bolsa-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 6vw, 5rem); letter-spacing: 3px; line-height: 1; }
+    .bolsa-hero p { font-size: 0.9rem; color: var(--gray); line-height: 1.8; max-width: 500px; margin-top: 1rem; }
+    .bolsa-stat { text-align: center; border: 1px solid rgba(255,255,255,0.08); padding: 1.5rem 2.5rem; background: var(--bg); }
+    .bolsa-stat strong { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--red); line-height: 1; }
+    .bolsa-stat span { font-size: 0.65rem; color: var(--gray); letter-spacing: 2px; text-transform: uppercase; }
+    .bolsa-filters { padding: 2rem 4rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .filter-label { font-size: 0.65rem; color: var(--gray); letter-spacing: 2px; text-transform: uppercase; margin-right: 0.5rem; }
+    .filter-btn { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: var(--gray); padding: 0.4rem 1rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+    .filter-btn:hover, .filter-btn.active { background: var(--red); border-color: var(--red); color: var(--white); }
+    .search-input { background: var(--bg2); border: 1px solid rgba(255,255,255,0.1); color: var(--white); padding: 0.5rem 1rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 1px; outline: none; margin-left: auto; width: 220px; transition: border-color 0.2s; }
     .search-input:focus { border-color: var(--red); }
     .search-input::placeholder { color: var(--gray); }
-
-    /* ── DJ GRID ── */
-    .dj-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: rgba(255,255,255,0.05);
-      padding: 4rem;
-      padding-top: 2rem;
-    }
-    .dj-card {
-      background: var(--bg2);
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.3s;
-      display: flex; flex-direction: column; gap: 1rem;
-    }
+    .dj-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.05); padding: 4rem; padding-top: 2rem; }
+    .dj-card { background: var(--bg2); position: relative; overflow: hidden; transition: background 0.3s; cursor: pointer; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
     .dj-card:hover { background: var(--bg3); }
-    .dj-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: var(--red);
-      transform: scaleX(0); transform-origin: left;
-      transition: transform 0.3s;
-    }
+    .dj-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; z-index: 2; }
     .dj-card:hover::before { transform: scaleX(1); }
-
-    .dj-card-header {
-      display: flex; align-items: center; gap: 1rem;
-    }
-    .dj-avatar {
-      width: 56px; height: 56px; flex-shrink: 0;
-      background: var(--bg3);
-      border: 2px solid rgba(214,43,43,0.3);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem; color: var(--red);
-      transition: border-color 0.3s;
-    }
-    .dj-card:hover .dj-avatar { border-color: var(--red); }
-    .dj-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.2rem; letter-spacing: 2px; line-height: 1.1;
-    }
-    .dj-genre {
-      font-size: 0.65rem; color: var(--gray);
-      letter-spacing: 1px; margin-top: 0.2rem;
-      line-height: 1.4;
-    }
-    .dj-location {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-size: 0.62rem; color: var(--red);
-      letter-spacing: 1px; text-transform: uppercase;
-    }
-    .dj-location::before { content: '📍'; font-size: 0.7rem; }
-
-    .dj-actions {
-      display: flex; gap: 0.5rem; margin-top: auto;
-    }
-    .dj-btn {
-      flex: 1;
-      display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
-      padding: 0.6rem 0.8rem;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
-      text-decoration: none; font-weight: 700;
-      transition: background 0.2s, color 0.2s;
-      border: none; cursor: pointer;
-    }
-    .dj-btn-whatsapp {
-      background: rgba(37,211,102,0.12);
-      color: #25d366; border: 1px solid rgba(37,211,102,0.3);
-    }
-    .dj-btn-whatsapp:hover { background: #25d366; color: #fff; }
-    .dj-btn-email {
-      background: rgba(214,43,43,0.1);
-      color: var(--red); border: 1px solid rgba(214,43,43,0.3);
-    }
-    .dj-btn-email:hover { background: var(--red); color: var(--white); }
-
-    /* ── CTA REGISTER ── */
-    .bolsa-register {
-      background: var(--bg2);
-      border-top: 2px solid var(--red);
-      padding: 4rem;
-      text-align: center;
-    }
-    .bolsa-register h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      letter-spacing: 3px; margin-bottom: 1rem;
-    }
-    .bolsa-register p {
-      font-size: 0.85rem; color: var(--gray);
-      line-height: 1.8; max-width: 500px; margin: 0 auto 2rem;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .bolsa-hero { padding: 2rem; }
-      .bolsa-filters { padding: 1.5rem 2rem; }
-      .dj-grid { grid-template-columns: 1fr; padding: 2rem; }
-      .search-input { width: 100%; margin-left: 0; }
-    }
+    .dj-card-img { width: 100%; aspect-ratio: 1/1; overflow: hidden; position: relative; background: var(--bg3); display: flex; align-items: center; justify-content: center; }
+    .dj-card-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.4s; filter: grayscale(20%); }
+    .dj-card:hover .dj-card-img img { transform: scale(1.05); filter: grayscale(0%); }
+    .dj-initials { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--red); }
+    .dj-card-info { padding: 1.2rem 1.5rem 1.5rem; }
+    .dj-card-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 2px; margin-bottom: 0.3rem; }
+    .dj-card-genre { font-size: 0.62rem; color: var(--gray); letter-spacing: 1px; margin-bottom: 0.5rem; }
+    .dj-card-city { font-size: 0.6rem; color: var(--red); letter-spacing: 1px; text-transform: uppercase; }
+    .dj-card-arrow { margin-top: 0.8rem; font-size: 0.6rem; letter-spacing: 2px; color: var(--gray); text-transform: uppercase; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+    .dj-card:hover .dj-card-arrow { color: var(--red); }
+    .bolsa-cta-bottom { background: var(--bg2); border-top: 2px solid var(--red); padding: 4rem; text-align: center; }
+    .bolsa-cta-bottom h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: 3px; margin-bottom: 1rem; }
+    .bolsa-cta-bottom p { font-size: 0.85rem; color: var(--gray); line-height: 1.8; max-width: 500px; margin: 0 auto 2rem; }
+    @media (max-width: 1100px) { .dj-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 900px) { .bolsa-hero { padding: 2rem; } .bolsa-filters { padding: 1.5rem 2rem; } .dj-grid { grid-template-columns: repeat(2, 1fr); padding: 2rem; } .search-input { width: 100%; margin-left: 0; } }
+    @media (max-width: 500px) { .dj-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-
-<!-- NAV -->
 <nav>
-  <a href="/index.html" class="nav-logo"><img src="/img/logo_cluster_dj.png" alt="Cluster DJ" style="height:60px;"></a>
+  <a href="/index.html" class="nav-logo"><img src="/img/logo_cluster_dj.png" alt="Cluster DJ" style="height:85px;"></a>
   <ul>
     <li><a href="/index.html#beneficios">Beneficios</a></li>
     <li><a href="/index.html#miembros">Miembros</a></li>
     <li><a href="/index.html#eventos">Eventos</a></li>
     <li><a href="/index.html#alianzas">Alianzas</a></li>
-    <li><a href="/bolsa.html" class="nav-cta" style="background:var(--white);color:var(--bg)!important;">Bolsa de Talento</a></li>
+    <li><a href="/bolsa.html" style="color:var(--red);">Bolsa de Talento</a></li>
+    <li><a href="http://bit.ly/3CISNk7" class="nav-cta">Inscríbete</a></li>
   </ul>
-  <div class="nav-asobares">
-    <span>creado por</span>
-    <img src="/img/logo_asobares.png" alt="Asobares">
-  </div>
+  <div class="nav-asobares"><span>creado por</span><img src="/img/logo_asobares.png" alt="Asobares"></div>
 </nav>
 
-<!-- HERO -->
 <div class="bolsa-page">
   <div class="bolsa-hero">
-    <div class="bolsa-hero-text">
+    <div>
       <div class="section-label">Directorio DJ · Colombia</div>
       <h1>BOLSA DE<br><span style="color:var(--red);">TALENTO</span></h1>
       <p>Conoce los mejores DJs de Colombia y contrátalos directamente. Todos son parte de la comunidad Cluster DJ.</p>
     </div>
-    <div class="bolsa-hero-stat">
-      <strong>13</strong>
-      <span>DJs disponibles</span>
-    </div>
+    <div class="bolsa-stat"><strong>11</strong><span>DJs disponibles</span></div>
   </div>
 
-  <!-- FILTERS -->
   <div class="bolsa-filters">
     <span class="filter-label">Filtrar:</span>
-    <button class="filter-btn active" onclick="filterDJs('todos')">Todos</button>
-    <button class="filter-btn" onclick="filterDJs('house')">House</button>
-    <button class="filter-btn" onclick="filterDJs('crossover')">Crossover</button>
-    <button class="filter-btn" onclick="filterDJs('electronica')">Electrónica</button>
-    <button class="filter-btn" onclick="filterDJs('techno')">Techno</button>
+    <button class="filter-btn active" onclick="filterDJs('todos',this)">Todos</button>
+    <button class="filter-btn" onclick="filterDJs('house',this)">House</button>
+    <button class="filter-btn" onclick="filterDJs('hiphop',this)">Hip-Hop</button>
+    <button class="filter-btn" onclick="filterDJs('techno',this)">Techno</button>
+    <button class="filter-btn" onclick="filterDJs('urbano',this)">Urbano</button>
     <input class="search-input" type="text" placeholder="Buscar DJ..." oninput="searchDJs(this.value)">
   </div>
 
-  <!-- DJ GRID -->
   <div class="dj-grid" id="djGrid">
-
-    <div class="dj-card" data-genres="crossover">
-      <div class="dj-card-header">
-        <div class="dj-avatar">D</div>
-        <div>
-          <div class="dj-name">DJ JOKER</div>
-          <div class="dj-genre">Crossover</div>
-        </div>
-      </div>
-      <div class="dj-location">A nivel nacional</div>
-      <div class="dj-actions">
-        <a href="https://wa.me/573103220781?text=Hola%2C%20te%20contacto%20desde%20Cluster%20DJ%2C%20estoy%20interesado%20en%20contratar%20tus%20servicios." class="dj-btn dj-btn-whatsapp" target="_blank">📱 WhatsApp</a>
-        <a href="/cdn-cgi/l/email-protection#b9d3d6d2dccbddd3d0dbd8f9ded4d8d0d597dad6d4" class="dj-btn dj-btn-email">✉ Email</a>
-      </div>
-    </div>
-
-    <div class="dj-card" data-genres="crossover">
-      <div class="dj-card-header">
-        <div class="dj-avatar">D</div>
-        <div>
-          <div class="dj-name">DJ SANTIAGO CRUZ</div>
-          <div class="dj-genre">Crossover</div>
-        </div>
-      </div>
-      <div class="dj-location">Cundinamarca</div>
-      <div class="dj-actions">
-        <a href="https://wa.me/573028270452?text=Hola%2C%20te%20contacto%20desde%20Cluster%20DJ%2C%20estoy%20interesado%20en%20contratar%20tus%20servicios." class="dj-btn dj-btn-whatsapp" target="_blank">📱 WhatsApp</a>
-        <a href="/cdn-cgi/l/email-protection#5f3e312b363e3830393a33362f3a6e681f37302b323e3633713c3032" class="dj-btn dj-btn-email">✉ Email</a>
-      </div>
-    </div>
-
-    <div class="dj-card" data-genres="crossover electronica">
-      <div class="dj-card-header">
-        <div class="dj-avatar">D</div>
-        <div>
-          <div class="dj-name">DJ ANDRÉS MACIÁ</div>
-          <div class="dj-genre">Crossover, ritmos latinos, electrónica global y clásicos atemporales</div>
-        </div>
-      </div>
-      <div class="dj-location">Regional, nacional e internacional</div>
-      <div class="dj-actions">
-        <a href="https://wa.me/573008369131?text=Hola%2C%20te%20contacto%20desde%20Cluster%20DJ%2C%20estoy%20interesado%20en%20contratar%20tus%20servicios." class="dj-btn dj-btn-whatsapp" target="_blank">📱 WhatsApp</a>
-        <a href="/cdn-cgi/l/email-protection#aac9c5dec3d0cbc9c3c5c4cec0cbc7eacdc7cbc3c684c9c5c7" class="dj-btn dj-btn-email">✉ Email</a>
-      </div>
-    </div>
-
-    <div class="dj-card" data-genres="crossover">
-      <div class="dj-card-header">
-        <div class="dj-avatar">D</div>
-        <div>
-          <div class="dj-name">DJ ZMOXX</div>
-          <div class="dj-genre">Crossover</div>
-        </div>
-      </div>
-      <div class="dj-location">Regional y nacional</div>
-      <div class="dj-actions">
-        <a href="https://wa.me/573215758189?text=Hola%2C%20te%20contacto%20desde%20Cluster%20DJ%2C%20estoy%20interesado%20en%20contratar%20tus%20servicios." class="dj-btn dj-btn-whatsapp" target="_blank">📱 WhatsApp</a>
-        <a href="/cdn-cgi/l/email-protection#f1b5bbabbcbea9a9c6c6b1b6bcb0b8bddfb2bebc" class="dj-btn dj-btn-email">✉ Email</a>
-      </div>
-    </div>
-
-    <div class="dj-card" data-genres="house crossover">
-      <div class="dj-card-header">
-        <div class="dj-avatar">D</div>
-        <div>
-          <div class="dj-name">DJ JARO PITRO</div>
-          <div class="dj-genre">House, Nu Disco, Afro House, Tech House, Deep House, Caribbean, Crossover</div>
-        </div>
-      </div>
-      <div class="dj-location">Cartagena y nacional</div>
-      <div class="dj-actions">
-        <a href="https://wa.me/573106570454?text=Hola%2C%20te%20contacto%20desde%20Cluster%20DJ%2C%20estoy%20interesado%20en%20contratar%20tus%20servicios." class="dj-btn dj-btn-whatsapp" target="_blank">📱 WhatsApp</a>
-        <a href="/cdn-cgi/l/email-protection#533932213c233a27213c133b3c273e323a3f7d303c3e" class="dj-btn dj-btn-email">✉ Email</a>
-      </div>
-    </div>
-
-    <div class="dj-card" data-genres="techno electronica">
-      <div class="dj-card-header">
-        <div class="dj-avatar">T</div>
-        <div>
-          <div class="dj-name">TRVX</div>
-          <div class="dj-genre">Groove, Trance, Techno</div>
-        </div>
-      </div>
-      <div class="dj-location">Nacional</div>
-      <div class="dj-actions">
-        <a href="https://wa.me/573026666975?text=Hola%2C%20te%20contacto%20desde%20Cluster%20DJ%2C%20estoy%20interesado%20en%20contratar%20tus%20servicios." class="dj-btn dj-btn-whatsapp" target="_blank">📱 WhatsApp</a>
-        <a href="/cdn-cgi/l/email-protection#ff8c9a9d9e8c8b969e918f9a919ecccecdcbbf98929e9693d19c9092" class="dj-btn dj-btn-email">✉ Email</a>
-      </div>
-    </div>
-
-    <div class="dj-card" data-genres="crossover">
-      <div class="dj-card-header">
-        <div class="dj-avatar">D</div>
-        <div>
-          <div class="dj-name">DJ ALEXIS CASTAÑO</div>
-          <div class="dj-genre">Crossover</div>
-        </div>
-      </div>
-      <div class="dj-location">Nacional y regional</div>
-      <div class="dj-actions">
-        <a href="https://wa.me/573217042557?text=Hola%2C%20te%20contacto%20desde%20Cluster%20DJ%2C%20estoy%20interesado%20en%20contratar%20tus%20servicios." class="dj-btn dj-btn-whatsapp" target="_blank">📱 WhatsApp</a>
-        <a href="/cdn-cgi/l/email-protection#36525c575a534e5f455557454257585976515b575f5a1855595b" class="dj-btn dj-btn-email">✉ Email</a>
-      </div>
-    </div>
-
-    <div class="dj-card" data-genres="house">
-      <div class="dj-card-header">
-        <div class="dj-avatar">K</div>
-        <div>
-          <div class="dj-name">KIKE SERRANO</div>
-          <div class="dj-genre">House, Fusión, Latino</div>
-        </div>
-      </div>
-      <div class="dj-location">Cartagena y nacional</div>
-      <div class="dj-actions">
-        <a href="https://wa.me/573008054648?text=Hola%2C%20te%20contacto%20desde%20Cluster%20DJ%2C%20estoy%20interesado%20en%20contratar%20tus%20servicios." class="dj-btn dj-btn-whatsapp" target="_blank">📱 WhatsApp</a>
-        <a href="/cdn-cgi/l/email-protection#482c222321232d3b2d3a3a292627082f25292124662b2725" class="dj-btn dj-btn-email">✉ Email</a>
-      </div>
-    </div>
-
-    <div class="dj-card" data-genres="crossover electronica">
-      <div class="dj-card-header">
-        <div class="dj-avatar">D</div>
-        <div>
-          <div class="dj-name">DJ DANIEL MIELES</div>
-          <div class="dj-genre">Crossover, electrónica y urbano</div>
-        </div>
-      </div>
-      <div class="dj-location">Local, nacional e internacional</div>
-      <div class="dj-actions">
-        <a href="https://wa.me/573008105366?text=Hola%2C%20te%20contacto%20desde%20Cluster%20DJ%2C%20estoy%20interesado%20en%20contratar%20tus%20servicios." class="dj-btn dj-btn-whatsapp" target="_blank">📱 WhatsApp</a>
-        <a href="/cdn-cgi/l/email-protection#0561646b6c6069686c6069607675776a617066666c6a6b6076456268646c692b666a68" class="dj-btn dj-btn-email">✉ Email</a>
-      </div>
-    </div>
-
-    <div class="dj-card" data-genres="house">
-      <div class="dj-card-header">
-        <div class="dj-avatar">J</div>
-        <div>
-          <div class="dj-name">JOHNNY HOUSE-IN</div>
-          <div class="dj-genre">House, Nu Disco</div>
-        </div>
-      </div>
-      <div class="dj-location">Nacional</div>
-      <div class="dj-actions">
-        <a href="https://wa.me/573212304589?text=Hola%2C%20te%20contacto%20desde%20Cluster%20DJ%2C%20estoy%20interesado%20en%20contratar%20los%20servicios%20de%20Johnny%20House-In." class="dj-btn dj-btn-whatsapp" target="_blank">📱 WhatsApp</a>
-      </div>
-    </div>
-
-    <div class="dj-card" data-genres="electronica">
-      <div class="dj-card-header">
-        <div class="dj-avatar">D</div>
-        <div>
-          <div class="dj-name">DUBCODE</div>
-          <div class="dj-genre">Electrónica</div>
-        </div>
-      </div>
-      <div class="dj-location">Nacional</div>
-      <div class="dj-actions">
-        <a href="https://wa.me/573212304589?text=Hola%2C%20te%20contacto%20desde%20Cluster%20DJ%2C%20estoy%20interesado%20en%20contratar%20los%20servicios%20de%20Dubcode." class="dj-btn dj-btn-whatsapp" target="_blank">📱 WhatsApp</a>
-      </div>
-    </div>
-
-    <div class="dj-card" data-genres="house electronica">
-      <div class="dj-card-header">
-        <div class="dj-avatar">M</div>
-        <div>
-          <div class="dj-name">MACHU75</div>
-          <div class="dj-genre">House, Progressive House, Dance</div>
-        </div>
-      </div>
-      <div class="dj-location">Zipaquirá, Cundinamarca - Nacional</div>
-      <div class="dj-actions">
-        <a href="https://wa.me/573212304589?text=Hola%2C%20te%20contacto%20desde%20Cluster%20DJ%2C%20estoy%20interesado%20en%20contratar%20los%20servicios%20de%20Machu75." class="dj-btn dj-btn-whatsapp" target="_blank">📱 WhatsApp</a>
-      </div>
-    </div>
-
-    <div class="dj-card" data-genres="house techno electronica">
-      <div class="dj-card-header">
-        <div class="dj-avatar">L</div>
-        <div>
-          <div class="dj-name">LIUCH DJ</div>
-          <div class="dj-genre">Afro House, Tech House, Progressive, Techno</div>
-        </div>
-      </div>
-      <div class="dj-location">Zipaquirá, Cundinamarca - Nacional</div>
-      <div class="dj-actions">
-        <a href="https://wa.me/573212304589?text=Hola%2C%20te%20contacto%20desde%20Cluster%20DJ%2C%20estoy%20interesado%20en%20contratar%20los%20servicios%20de%20Liuch%20DJ." class="dj-btn dj-btn-whatsapp" target="_blank">📱 WhatsApp</a>
-      </div>
-    </div>
-
+    <a href="/djs/djliuch.html" class="dj-card" data-genres="house urbano">
+      <div class="dj-card-img"><img src="/img/Djs/liuch.jpg" alt="DJ Liuch" onerror="this.style.display='none';this.parentElement.querySelector('.dj-initials').style.display='flex'"><div class="dj-initials" style="display:none">L</div></div>
+      <div class="dj-card-info"><div class="dj-card-name">DJ LIUCH</div><div class="dj-card-genre">House · Latino · Urbano</div><div class="dj-card-city">Zipaquirá</div><div class="dj-card-arrow">Ver perfil →</div></div>
+    </a>
+    <a href="/djs/afrolike.html" class="dj-card" data-genres="house">
+      <div class="dj-card-img"><img src="/img/Djs/Afrolike.jpg" alt="Afrolike" onerror="this.style.display='none';this.parentElement.querySelector('.dj-initials').style.display='flex'"><div class="dj-initials" style="display:none">A</div></div>
+      <div class="dj-card-info"><div class="dj-card-name">AFROLIKE</div><div class="dj-card-genre">House · NuDisco · Funk</div><div class="dj-card-city">Bogotá</div><div class="dj-card-arrow">Ver perfil →</div></div>
+    </a>
+    <a href="/djs/monttenegro.html" class="dj-card" data-genres="house">
+      <div class="dj-card-img"><img src="/img/Djs/monttenegro.jpg" alt="Monttenegro Classy" onerror="this.style.display='none';this.parentElement.querySelector('.dj-initials').style.display='flex'"><div class="dj-initials" style="display:none">M</div></div>
+      <div class="dj-card-info"><div class="dj-card-name">MONTTENEGRO CLASSY</div><div class="dj-card-genre">House · NuDisco</div><div class="dj-card-city">Bogotá</div><div class="dj-card-arrow">Ver perfil →</div></div>
+    </a>
+    <a href="/djs/richardneel.html" class="dj-card" data-genres="house techno">
+      <div class="dj-card-img"><img src="/img/Djs/richardneel.jpg" alt="Richard Neel" onerror="this.style.display='none';this.parentElement.querySelector('.dj-initials').style.display='flex'"><div class="dj-initials" style="display:none">R</div></div>
+      <div class="dj-card-info"><div class="dj-card-name">RICHARD NEEL</div><div class="dj-card-genre">House · Tech House · Progressive</div><div class="dj-card-city">Bogotá</div><div class="dj-card-arrow">Ver perfil →</div></div>
+    </a>
+    <a href="/djs/djjulivargas.html" class="dj-card" data-genres="house urbano">
+      <div class="dj-card-img"><img src="/img/Djs/julivargas.jpg" alt="DJ Juli Vargas" onerror="this.style.display='none';this.parentElement.querySelector('.dj-initials').style.display='flex'"><div class="dj-initials" style="display:none">J</div></div>
+      <div class="dj-card-info"><div class="dj-card-name">DJ JULI VARGAS</div><div class="dj-card-genre">House · Latino · Urbano</div><div class="dj-card-city">Bogotá</div><div class="dj-card-arrow">Ver perfil →</div></div>
+    </a>
+    <a href="/djs/alphabeats.html" class="dj-card" data-genres="house">
+      <div class="dj-card-img"><img src="/img/Djs/alphabeats.jpg" alt="Alpha Beats" onerror="this.style.display='none';this.parentElement.querySelector('.dj-initials').style.display='flex'"><div class="dj-initials" style="display:none">A</div></div>
+      <div class="dj-card-info"><div class="dj-card-name">ALPHA BEATS</div><div class="dj-card-genre">House · NuDisco · Indie</div><div class="dj-card-city">Bogotá</div><div class="dj-card-arrow">Ver perfil →</div></div>
+    </a>
+    <a href="/djs/sryvel.html" class="dj-card" data-genres="house techno">
+      <div class="dj-card-img"><img src="/img/Djs/SRYVEL.jpg" alt="Sryvel" onerror="this.style.display='none';this.parentElement.querySelector('.dj-initials').style.display='flex'"><div class="dj-initials" style="display:none">S</div></div>
+      <div class="dj-card-info"><div class="dj-card-name">SRYVEL</div><div class="dj-card-genre">House · Tech House · Progressive</div><div class="dj-card-city">Bogotá</div><div class="dj-card-arrow">Ver perfil →</div></div>
+    </a>
+    <a href="/djs/juanbeat.html" class="dj-card" data-genres="house urbano">
+      <div class="dj-card-img"><img src="/img/Djs/juanbeat.jpg" alt="Juan Beat" onerror="this.style.display='none';this.parentElement.querySelector('.dj-initials').style.display='flex'"><div class="dj-initials" style="display:none">J</div></div>
+      <div class="dj-card-info"><div class="dj-card-name">JUAN BEAT</div><div class="dj-card-genre">House · Latino · Urbano</div><div class="dj-card-city">Bogotá</div><div class="dj-card-arrow">Ver perfil →</div></div>
+    </a>
+    <a href="/djs/jekyll.html" class="dj-card" data-genres="house urbano">
+      <div class="dj-card-img"><img src="/img/Djs/jekyll.jpg" alt="Jekyll" onerror="this.style.display='none';this.parentElement.querySelector('.dj-initials').style.display='flex'"><div class="dj-initials" style="display:none">J</div></div>
+      <div class="dj-card-info"><div class="dj-card-name">JEKYLL</div><div class="dj-card-genre">House · Latino · Urbano</div><div class="dj-card-city">Bogotá</div><div class="dj-card-arrow">Ver perfil →</div></div>
+    </a>
+    <a href="/djs/djblanko.html" class="dj-card" data-genres="hiphop">
+      <div class="dj-card-img"><img src="/img/Djs/blanko.jpg" alt="DJ Blanko" onerror="this.style.display='none';this.parentElement.querySelector('.dj-initials').style.display='flex'"><div class="dj-initials" style="display:none">B</div></div>
+      <div class="dj-card-info"><div class="dj-card-name">DJ BLANKO</div><div class="dj-card-genre">Hip Hop · Funk · Oldies · Scratch</div><div class="dj-card-city">Bogotá</div><div class="dj-card-arrow">Ver perfil →</div></div>
+    </a>
+    <a href="/djs/djota.html" class="dj-card" data-genres="house urbano">
+      <div class="dj-card-img"><img src="/img/Djs/djota.jpg" alt="DJøta" onerror="this.style.display='none';this.parentElement.querySelector('.dj-initials').style.display='flex'"><div class="dj-initials" style="display:none">Ø</div></div>
+      <div class="dj-card-info"><div class="dj-card-name">DJØTA</div><div class="dj-card-genre">House · Latino · Urbano</div><div class="dj-card-city">Bogotá</div><div class="dj-card-arrow">Ver perfil →</div></div>
+    </a>
   </div>
 
-  <!-- CTA REGISTER -->
-  <div class="bolsa-register">
+  <div class="bolsa-cta-bottom">
     <div class="section-label" style="margin-bottom:0.5rem;">¿Eres DJ?</div>
-    <h2>REGÍSTRATE EN LA<br><span style="color:var(--red);">BOLSA DE TALENTO</span></h2>
-    <p>Únete al directorio de DJs de Cluster DJ y llega a miles de clientes potenciales en toda Colombia.</p>
+    <h2>ÚNETE A LA<br><span style="color:var(--red);">BOLSA DE TALENTO</span></h2>
+    <p>Inscríbete en el directorio de DJs de Cluster DJ y llega a miles de clientes potenciales en toda Colombia.</p>
     <a href="https://wa.me/573212304589?text=Hola%2C%20soy%20DJ%20y%20quiero%20registrarme%20en%20la%20Bolsa%20de%20Talento%20de%20Cluster%20DJ." class="btn-primary" target="_blank">📱 Contáctanos por WhatsApp</a>
   </div>
-
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-brand">
     <img src="/img/logo_cluster_dj.png" alt="Cluster DJ" style="height:80px; margin-bottom:0.8rem; display:block;">
     <p>La primera comunidad DJ a nivel nacional.</p>
-    <div class="footer-contact-item"><span>MAIL</span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9cfff0e9efe8f9eef8f6dcfdeff3fefdeef9efb2f3eefb">[email&#160;protected]</a></div>
+    <div class="footer-contact-item"><span>MAIL</span>clusterdj@asobares.org</div>
     <div class="footer-contact-item"><span>IG</span>@clusterdj_asobares</div>
   </div>
-  <div class="footer-col">
-    <h4>Navegación</h4>
-    <ul>
-      <li><a href="/index.html" style="color:inherit;text-decoration:none;">Inicio</a></li>
-      <li><a href="/index.html#beneficios" style="color:inherit;text-decoration:none;">Beneficios</a></li>
-      <li><a href="/index.html#miembros" style="color:inherit;text-decoration:none;">Miembros</a></li>
-      <li><a href="/index.html#eventos" style="color:inherit;text-decoration:none;">Eventos</a></li>
-    </ul>
-  </div>
-  <div class="footer-col">
-    <h4>Programas</h4>
-    <ul>
-      <li>Masterclasses</li>
-      <li>DJs a Volar</li>
-      <li>Bolsa de Talento</li>
-      <li>Alianza SENA</li>
-    </ul>
-  </div>
+  <div class="footer-col"><h4>Navegación</h4><ul><li><a href="/index.html" style="color:inherit;text-decoration:none;">Inicio</a></li><li><a href="/index.html#beneficios" style="color:inherit;text-decoration:none;">Beneficios</a></li><li><a href="/bolsa.html" style="color:inherit;text-decoration:none;">Bolsa de Talento</a></li></ul></div>
+  <div class="footer-col"><h4>Programas</h4><ul><li>Masterclasses</li><li>DJs a Volar</li><li>Bolsa de Talento</li><li>Alianza SENA</li></ul></div>
   <div class="footer-bottom">
     <span>© <span id="footer-year"></span> Cluster DJ · Todos los derechos reservados</span>
-    <div class="footer-asobares">
-      <span>creado por</span>
-      <img src="/img/logo_asobares.png" alt="Asobares">
-    </div>
-    <div class="footer-rayar">
-      Sitio web desarrollado por <a href="https://vamosarayar.com/" target="_blank">Rayar!</a>
-    </div>
+    <div class="footer-asobares"><span>creado por</span><img src="/img/logo_asobares.png" alt="Asobares"></div>
+    <div class="footer-rayar">Sitio web desarrollado por <a href="https://vamosarayar.com/" target="_blank">Rayar!</a></div>
   </div>
 </footer>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Footer year
+<script>
   document.getElementById('footer-year').textContent = new Date().getFullYear();
-
-  // Nav scroll shadow
-  window.addEventListener('scroll', () => {
-    document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 20);
-  });
-
-  // Filter
-  function filterDJs(genre) {
+  window.addEventListener('scroll', () => { document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 20); });
+  function filterDJs(genre, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active'
+    btn.classList.add('active');
+    document.querySelectorAll('.dj-card').forEach(card => { card.style.display = (genre === 'todos' || card.dataset.genres.includes(genre)) ? 'flex' : 'none'; });
+  }
+  function searchDJs(query) {
+    const q = query.toLowerCase();
+    document.querySelectorAll('.dj-card').forEach(card => {
+      const name = card.querySelector('.dj-card-name').textContent.toLowerCase();
+      card.style.display = name.includes(q) ? 'flex' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
