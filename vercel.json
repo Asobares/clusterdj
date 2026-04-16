@@ -1,7 +1,3 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    { "source": "/djs/:path*", "destination": "/Djs/:path*.html" }
-  ]
+  "cleanUrls": true
 }
