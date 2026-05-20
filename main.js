@@ -10,6 +10,24 @@ document.addEventListener('DOMContentLoaded', () => {
     nav.classList.toggle('scrolled', window.scrollY > 20);
   });
 
+  /* ── 1b. HAMBURGER MENU ── */
+  const hamburger = document.querySelector('.nav-hamburger');
+  const navMenu = document.querySelector('nav ul');
+  if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+      const open = navMenu.classList.toggle('open');
+      hamburger.classList.toggle('active', open);
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
   /* ── 2. ANIMACIONES de entrada con IntersectionObserver ── */
   const animEls = document.querySelectorAll('.animate');
   const observer = new IntersectionObserver((entries) => {
