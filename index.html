@@ -90,7 +90,7 @@
   </div>
   <p class="bolsa-desc">Estamos construyendo el directorio DJ más completo de Colombia. Un espacio donde promotores, venues y agencias podrán encontrar el talento perfecto, y los DJs podrán mostrar su trabajo al mundo.</p>
   <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:2rem;">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfg7a7QApsNiVrpF5bpNPh8MkNvojThvE_kiYCMeO9GgCY5cA/viewform" class="btn-primary" target="_blank">Únete a la Bolsa de Talento</a>
+    <a href="#" class="btn-primary" onclick="openTalentModal();return false;">Únete a la Bolsa de Talento</a>
     <a href="/bolsa.html" class="btn-outline">Ver directorio de DJs →</a>
   </div>
 </section>
@@ -469,6 +469,32 @@
     </div>
   </div>
 </footer>
+
+<!-- ══════════════ MODAL BOLSA DE TALENTO ══════════════ -->
+<div class="talent-modal-overlay" id="talentModal">
+  <div class="talent-modal">
+    <button class="talent-modal-close" onclick="closeTalentModal()" aria-label="Cerrar">✕</button>
+    <div class="talent-modal-label">Únete al directorio</div>
+    <h3>¿CÓMO QUIERES PARTICIPAR?</h3>
+    <p>Selecciona tu perfil para ir al formulario de inscripción correspondiente.</p>
+    <div class="talent-modal-btns">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfg7a7QApsNiVrpF5bpNPh8MkNvojThvE_kiYCMeO9GgCY5cA/viewform" target="_blank" class="talent-modal-btn" onclick="closeTalentModal()">
+        <div>
+          <div class="talent-modal-btn-title">DJs</div>
+          <div class="talent-modal-btn-sub">Formulario para DJs</div>
+        </div>
+        <span class="talent-modal-btn-arrow">→</span>
+      </a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeGONGa9uOzoL8hpV-ufKFJhY0T4f-2TcXwzNTKAsRxqRRYkg/viewform" target="_blank" class="talent-modal-btn" onclick="closeTalentModal()">
+        <div>
+          <div class="talent-modal-btn-title">Músicos / Bandas</div>
+          <div class="talent-modal-btn-sub">Formulario para músicos y bandas</div>
+        </div>
+        <span class="talent-modal-btn-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
 
 <script src="main.js"></script>
 </body>

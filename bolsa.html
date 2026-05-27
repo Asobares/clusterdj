@@ -65,7 +65,7 @@
       <div class="section-label">Directorio DJ · Colombia</div>
       <h1>BOLSA DE<br><span style="color:var(--red);">TALENTO</span></h1>
       <p>Conoce los mejores DJs de Colombia y contrátalos directamente. Todos son parte de la comunidad Cluster DJ.</p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfg7a7QApsNiVrpF5bpNPh8MkNvojThvE_kiYCMeO9GgCY5cA/viewform" class="btn-primary" target="_blank" style="margin-top:1.5rem; display:inline-block;">Únete a la Bolsa de Talento</a>
+      <a href="#" class="btn-primary" onclick="openTalentModal();return false;" style="margin-top:1.5rem; display:inline-block;">Únete a la Bolsa de Talento</a>
     </div>
     <div class="bolsa-stat"><strong>11</strong><span>DJs disponibles</span></div>
   </div>
@@ -131,7 +131,7 @@
     <div class="section-label" style="margin-bottom:0.5rem;">¿Eres DJ?</div>
     <h2>ÚNETE A LA<br><span style="color:var(--red);">BOLSA DE TALENTO</span></h2>
     <p>Inscríbete en el directorio de DJs de Cluster DJ y llega a miles de clientes potenciales en toda Colombia.</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfg7a7QApsNiVrpF5bpNPh8MkNvojThvE_kiYCMeO9GgCY5cA/viewform" class="btn-primary" target="_blank" style="font-size:1rem; padding:1.4rem 4rem; letter-spacing:4px;">ÚNETE A LA BOLSA DE TALENTO</a>
+    <a href="#" class="btn-primary" onclick="openTalentModal();return false;" style="font-size:1rem; padding:1.4rem 4rem; letter-spacing:4px;">ÚNETE A LA BOLSA DE TALENTO</a>
   </div>
 </div>
 
@@ -150,9 +150,36 @@
     <div class="footer-rayar">Sitio web desarrollado por <a href="https://vamosarayar.com/" target="_blank">Rayar!</a></div>
   </div>
 </footer>
+<!-- ══════════════ MODAL BOLSA DE TALENTO ══════════════ -->
+<div class="talent-modal-overlay" id="talentModal">
+  <div class="talent-modal">
+    <button class="talent-modal-close" onclick="closeTalentModal()" aria-label="Cerrar">✕</button>
+    <div class="talent-modal-label">Únete al directorio</div>
+    <h3>¿CÓMO QUIERES PARTICIPAR?</h3>
+    <p>Selecciona tu perfil para ir al formulario de inscripción correspondiente.</p>
+    <div class="talent-modal-btns">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfg7a7QApsNiVrpF5bpNPh8MkNvojThvE_kiYCMeO9GgCY5cA/viewform" target="_blank" class="talent-modal-btn" onclick="closeTalentModal()">
+        <div>
+          <div class="talent-modal-btn-title">DJs</div>
+          <div class="talent-modal-btn-sub">Formulario para DJs</div>
+        </div>
+        <span class="talent-modal-btn-arrow">→</span>
+      </a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeGONGa9uOzoL8hpV-ufKFJhY0T4f-2TcXwzNTKAsRxqRRYkg/viewform" target="_blank" class="talent-modal-btn" onclick="closeTalentModal()">
+        <div>
+          <div class="talent-modal-btn-title">Músicos / Bandas</div>
+          <div class="talent-modal-btn-sub">Formulario para músicos y bandas</div>
+        </div>
+        <span class="talent-modal-btn-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
 <script>
   document.getElementById('footer-year').textContent = new Date().getFullYear();
   window.addEventListener('scroll', () => { document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 20); });
+  document.getElementById('talentModal').addEventListener('click', function(e) { if (e.target === this) closeTalentModal(); });
   function filterDJs(genre, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -164,6 +191,14 @@
       const name = card.querySelector('.dj-card-name').textContent.toLowerCase();
       card.style.display = name.includes(q) ? 'flex' : 'none';
     });
+  }
+  function openTalentModal() {
+    document.getElementById('talentModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeTalentModal() {
+    document.getElementById('talentModal').classList.remove('open');
+    document.body.style.overflow = '';
   }
 </script>
 </body>

@@ -56,4 +56,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById('footer-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  /* ── 5. MODAL BOLSA DE TALENTO: cerrar al click en overlay ── */
+  const overlay = document.getElementById('talentModal');
+  if (overlay) {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeTalentModal();
+    });
+  }
+
 });
+
+function openTalentModal() {
+  document.getElementById('talentModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeTalentModal() {
+  document.getElementById('talentModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
