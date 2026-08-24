@@ -970,8 +970,11 @@ footer {
   transition: opacity 0.3s;
 }
 .sponsor-item:hover img { opacity: 1; }
-/* ── SPONSOR: logo cuadrado, +20% de alto ── */
-.sponsor-item img[src*="logo_RANCHO_MX"] { height: 78px; }
+/* ── 9 patrocinadores: 5 arriba + 4 abajo, sin filas huérfanas ── */
+.sponsor-item:nth-child(-n+5) { width: calc(100% / 5); }
+.sponsor-item:nth-child(n+6)  { width: calc(100% / 4); }
+/* Logo cuadrado: necesita más alto que los horizontales para el mismo peso visual */
+.sponsor-item img[src*="logo_RANCHO_MX"] { height: 100px; max-width: 100px; }
 
 @media (max-width: 900px) {
   .expodj-layout { grid-template-columns: 1fr; }
@@ -979,5 +982,8 @@ footer {
   .expodj-gallery { grid-template-columns: repeat(2, 1fr); }
   .ibiza-gallery { grid-template-columns: 1fr; }
   .nav-asobares { display: none; }
-  .sponsor-item { width: calc(100% / 2); }
+  .sponsor-item,
+  .sponsor-item:nth-child(-n+5),
+  .sponsor-item:nth-child(n+6) { width: calc(100% / 2); }
+  .sponsor-item:last-child { width: 100%; }
 }
