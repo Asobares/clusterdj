@@ -970,6 +970,8 @@ footer {
   transition: opacity 0.3s;
 }
 .sponsor-item:hover img { opacity: 1; }
+/* ── SPONSOR: logo cuadrado, +20% de alto ── */
+.sponsor-item img[src*="logo_RANCHO_MX"] { height: 78px; }
 
 @media (max-width: 900px) {
   .expodj-layout { grid-template-columns: 1fr; }
