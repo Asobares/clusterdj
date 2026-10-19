@@ -529,6 +529,123 @@ section { padding: 5rem 4rem; }
 }
 .cta p { font-size: 0.8rem; color: var(--gray); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.9; }
 
+/* ── FORMULARIO DE INSCRIPCIÓN ── */
+#inscripcion { scroll-margin-top: 100px; }
+.insc-form, .insc-success {
+  position: relative;
+  max-width: 860px; margin: 0 auto;
+  text-align: left;
+  background: var(--bg);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-top: 3px solid var(--red);
+  padding: 2.5rem;
+}
+.insc-form fieldset { border: none; }
+.insc-form legend, .insc-empresa summary {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem; letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+}
+.insc-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.2rem 1.5rem;
+}
+.insc-field { display: flex; flex-direction: column; gap: 0.45rem; }
+.insc-field > span {
+  font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gray);
+}
+.insc-field input, .insc-field select {
+  width: 100%;
+  background: var(--bg2);
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-left: 3px solid rgba(214,43,43,0.4);
+  padding: 0.85rem 1rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.insc-field select {
+  appearance: none; -webkit-appearance: none;
+  padding-right: 2.5rem; cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, var(--red) 50%),
+                    linear-gradient(135deg, var(--red) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
+  background-size: 5px 5px; background-repeat: no-repeat;
+}
+.insc-field select:invalid { color: var(--gray); }
+.insc-field option { color: var(--white); background: var(--bg2); }
+.insc-field input::placeholder { color: #555; }
+.insc-field input:focus, .insc-field select:focus {
+  border-color: var(--red); background-color: var(--bg3);
+}
+.insc-form.submitted .insc-field input:invalid,
+.insc-form.submitted .insc-field select:invalid { border-color: var(--red); }
+
+.insc-empresa {
+  margin-top: 2rem; padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.insc-empresa summary {
+  cursor: pointer; list-style: none;
+  display: flex; align-items: center; gap: 0.8rem;
+  margin-bottom: 0;
+}
+.insc-empresa summary::-webkit-details-marker { display: none; }
+.insc-empresa summary::before {
+  content: '+'; color: var(--red);
+  font-family: 'IBM Plex Mono', monospace; font-size: 1.1rem;
+  width: 1rem;
+}
+.insc-empresa[open] summary::before { content: '–'; }
+.insc-empresa summary em {
+  font-family: 'IBM Plex Mono', monospace; font-style: normal;
+  font-size: 0.6rem; letter-spacing: 2px; color: var(--gray); text-transform: uppercase;
+}
+.insc-empresa[open] .insc-grid { margin-top: 1.5rem; }
+
+.insc-error {
+  margin: 1.5rem 0 0 !important; max-width: none !important;
+  padding: 0.9rem 1.2rem;
+  border: 1px solid var(--red); border-left-width: 3px;
+  color: var(--white) !important; font-size: 0.72rem !important;
+  background: rgba(214,43,43,0.1);
+}
+.insc-submit {
+  margin-top: 2rem;
+  border: none; cursor: pointer;
+  font-size: 0.85rem; padding: 1.1rem 3rem;
+}
+.insc-submit:disabled { opacity: 0.6; cursor: wait; transform: none; }
+
+.insc-success { text-align: center; padding: 3.5rem 2.5rem; outline: none; }
+.insc-success-icon {
+  width: 64px; height: 64px; margin: 0 auto 1.5rem;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--red); color: var(--white);
+  font-size: 2rem; font-weight: 700;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+}
+.insc-success h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  letter-spacing: 2px; line-height: 1.1; margin: 0.5rem 0 1rem;
+}
+.insc-success h3 span { color: var(--red); }
+.insc-success p { margin-bottom: 2rem; }
+.insc-success p strong { color: var(--white); }
+.insc-success .btn-outline { background: none; cursor: pointer; }
+
+@media (max-width: 900px) {
+  .cta { padding: 4rem 1rem; }
+  .insc-form, .insc-success { padding: 1.8rem 1.2rem; }
+  .insc-grid { grid-template-columns: 1fr; }
+  .insc-submit { width: 100%; }
+}
+
 /* ── FOOTER ── */
 footer {
   background: var(--bg);

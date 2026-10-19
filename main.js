@@ -64,7 +64,95 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ── 6. FORMULARIO DE INSCRIPCIÓN (Supabase) ── */
+  const inscForm = document.getElementById('inscForm');
+  if (inscForm) initInscripcion(inscForm);
+
 });
+
+const SUPABASE_URL = 'https://pbqmkodwmntujezbokgo.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBicW1rb2R3bW50dWplemJva2dvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4NTQzOTIsImV4cCI6MjA4NjQzMDM5Mn0.C9sw9cix0J9Z2eTh-lr_4S6_gZmHIVwpzsxrZMCKl34';
+
+function initInscripcion(form) {
+  const errorEl = document.getElementById('inscError');
+  const submitBtn = form.querySelector('.insc-submit');
+  const telInput = form.elements.telefono;
+
+  // Solo dígitos en el celular
+  telInput.addEventListener('input', () => {
+    telInput.value = telInput.value.replace(/\D/g, '').slice(0, 10);
+  });
+
+  const showError = (msg) => {
+    errorEl.textContent = msg;
+    errorEl.hidden = false;
+  };
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorEl.hidden = true;
+    form.classList.add('submitted');
+    if (!form.reportValidity()) return;
+
+    if (!window.supabase) {
+      showError('No pudimos conectar con el servidor. Revisa tu conexión y recarga la página.');
+      return;
+    }
+    const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    // Campos de texto limpios; vacíos → null
+    const data = {};
+    for (const el of form.elements) {
+      if (!el.name) continue;
+      const v = el.value.trim();
+      data[el.name] = v === '' ? null : v;
+    }
+    data.email = data.email.toLowerCase();
+    if (data.empresa_email) data.empresa_email = data.empresa_email.toLowerCase();
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'ENVIANDO…';
+
+    const { error } = await client.from('inscripciones_cluster_dj').insert(data);
+
+    if (error) {
+      console.error('Supabase insert error:', error);
+      showError(error.code === '23505'
+        ? 'Ya existe una inscripción con estos datos. Si crees que es un error, escríbenos.'
+        : 'Ocurrió un error al enviar tu inscripción. Inténtalo de nuevo en unos minutos.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'INSCRÍBETE AHORA';
+      return;
+    }
+
+    // El registro ya quedó guardado: un fallo del correo no bloquea la pantalla de éxito
+    client.functions.invoke('send-confirmation', {
+      body: {
+        email: data.email,
+        nombre: data.nombre,
+        evento: 'Cluster DJ — Comunidad de DJs de Colombia',
+        fecha: '',
+        hora: '',
+        lugar: 'Quedaste registrado en la comunidad de DJs más grande de Colombia. Pronto te contactaremos con novedades, eventos y oportunidades.',
+        direccion: '',
+        link: 'https://www.clusterdj.co',
+        link_label: 'Visitar Cluster DJ →'
+      }
+    }).then(({ error: fnError }) => {
+      if (fnError) console.error('send-confirmation error:', fnError);
+    }).catch(err => console.error('send-confirmation error:', err));
+
+    if (typeof gtag === 'function') gtag('event', 'sign_up', { method: 'formulario_cluster' });
+
+    document.getElementById('inscSuccessName').textContent = data.nombre.toUpperCase();
+    document.getElementById('inscSuccessEmail').textContent = data.email;
+    form.hidden = true;
+    const success = document.getElementById('inscSuccess');
+    success.hidden = false;
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    success.focus({ preventScroll: true });
+  });
+}
 
 function openTalentModal() {
   document.getElementById('talentModal').classList.add('open');
