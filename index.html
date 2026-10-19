@@ -90,6 +90,208 @@
 
 <span class="redline"></span>
 
+<!-- ══════════════ FORMULARIO DE INSCRIPCIÓN ══════════════ -->
+<section id="inscripcion" class="inscripcion">
+  <div class="section-label">Únete gratis</div>
+  <div class="section-head">
+    <h2>INSCRÍBETE <span style="color:var(--red);">SIN COSTO</span></h2>
+    <div class="line"></div>
+  </div>
+  <p class="inscripcion-desc">Únete a la primera comunidad DJ a nivel nacional y lleva tu carrera al siguiente nivel. Acceso gratuito a todos los beneficios desde el primer día.</p>
+
+  <form class="insc-form" id="inscForm">
+    <fieldset>
+      <legend>Datos personales</legend>
+      <div class="insc-grid">
+        <label class="insc-field">
+          <span>Tipo ID *</span>
+          <select name="tipo_identificacion" required>
+            <option value="" disabled selected>Selecciona…</option>
+            <option>CÉDULA</option>
+            <option>CÉDULA DE EXTRANJERÍA</option>
+            <option>PASAPORTE</option>
+          </select>
+        </label>
+        <label class="insc-field">
+          <span>Nº Identificación *</span>
+          <input type="text" name="numero_identificacion" required maxlength="20" autocomplete="off">
+        </label>
+        <label class="insc-field">
+          <span>Nombre *</span>
+          <input type="text" name="nombre" required maxlength="80" autocomplete="given-name">
+        </label>
+        <label class="insc-field">
+          <span>Apellidos *</span>
+          <input type="text" name="apellidos" required maxlength="80" autocomplete="family-name">
+        </label>
+        <label class="insc-field">
+          <span>Género *</span>
+          <select name="genero" required>
+            <option value="" disabled selected>Selecciona…</option>
+            <option>MASCULINO</option>
+            <option>FEMENINO</option>
+            <option>OTRO</option>
+            <option>NO SUMINISTRA</option>
+          </select>
+        </label>
+        <label class="insc-field">
+          <span>Profesión u Oficio *</span>
+          <select name="profesion" required>
+            <option value="" disabled selected>Selecciona…</option>
+            <option>ABOGADO(A)</option>
+            <option>ADMINISTRADOR</option>
+            <option>AGENTE TURÍSTICO</option>
+            <option>ANALISTA CARRERAS AFINES</option>
+            <option>ARQUITECTO(A)</option>
+            <option>ARTISTA</option>
+            <option>ASESOR(A)</option>
+            <option>ASISTENTE</option>
+            <option>BARISTA</option>
+            <option>BARTENDER</option>
+            <option>CAJERO(A)</option>
+            <option>CEO</option>
+            <option>CHEF</option>
+            <option>COCINERO(A)</option>
+            <option>CONSULTOR(A)</option>
+            <option>CONTADOR(A)</option>
+            <option>COORDINADOR(A)</option>
+            <option>DIRECTOR(A)</option>
+            <option>DISEÑADOR(A)</option>
+            <option>DJ</option>
+            <option>DOCENTE CARRERAS AFINES</option>
+            <option>EMPRESARIO(A)</option>
+            <option>ENTIDAD-GOBIERNO</option>
+            <option>ESTUDIANTE CARRERAS AFINES</option>
+            <option>GERENTE</option>
+            <option>GERENTE DE MARCA</option>
+            <option>GREMIO</option>
+            <option>INGENIERO(A)</option>
+            <option>INGENIERO(A) DE SONIDO</option>
+            <option>JEFE DE COMPRAS</option>
+            <option>MANAGER</option>
+            <option>MARKETING</option>
+            <option>MESERO(A)</option>
+            <option>MÚSICO</option>
+            <option>OPERADOR(A) LOGÍSTICO</option>
+            <option>ORGANIZADOR(A) DE EVENTOS</option>
+            <option>PERIODISTA</option>
+            <option>PRODUCTOR(A)</option>
+            <option>PROPIETARIO(A)</option>
+            <option>PROVEEDOR(A)</option>
+            <option>RECURSOS HUMANOS</option>
+            <option>RELACIONES PÚBLICAS</option>
+            <option>REPRESENTANTE LEGAL</option>
+            <option>SOMMELIER</option>
+            <option>TÉCNICO CARRERAS AFINES</option>
+            <option>TRADUCTOR</option>
+            <option>OTRO</option>
+            <option>NO SUMINISTRA</option>
+          </select>
+        </label>
+        <label class="insc-field">
+          <span>Departamento *</span>
+          <select name="departamento" required>
+            <option value="" disabled selected>Selecciona…</option>
+            <option>Amazonas</option>
+            <option>Antioquia</option>
+            <option>Arauca</option>
+            <option>Atlántico</option>
+            <option>Bolívar</option>
+            <option>Boyacá</option>
+            <option>Bogotá D.C.</option>
+            <option>Caldas</option>
+            <option>Caquetá</option>
+            <option>Casanare</option>
+            <option>Cauca</option>
+            <option>Cesar</option>
+            <option>Chocó</option>
+            <option>Córdoba</option>
+            <option>Cundinamarca</option>
+            <option>Guainía</option>
+            <option>Guaviare</option>
+            <option>Huila</option>
+            <option>La Guajira</option>
+            <option>Magdalena</option>
+            <option>Meta</option>
+            <option>Nariño</option>
+            <option>Norte de Santander</option>
+            <option>Putumayo</option>
+            <option>Quindío</option>
+            <option>Risaralda</option>
+            <option>San Andrés Providencia y Santa Catalina</option>
+            <option>Santander</option>
+            <option>Sucre</option>
+            <option>Tolima</option>
+            <option>Valle del Cauca</option>
+            <option>Vaupés</option>
+            <option>Vichada</option>
+            <option>Internacional</option>
+          </select>
+        </label>
+        <label class="insc-field">
+          <span>Ciudad *</span>
+          <input type="text" name="ciudad" required maxlength="80" autocomplete="address-level2">
+        </label>
+        <label class="insc-field">
+          <span>Teléfono celular *</span>
+          <input type="tel" name="telefono" required inputmode="numeric" pattern="[0-9]{10}" maxlength="10" title="Debe tener exactamente 10 dígitos numéricos" placeholder="3001234567" autocomplete="tel-national">
+        </label>
+        <label class="insc-field">
+          <span>Correo electrónico *</span>
+          <input type="email" name="email" required maxlength="120" autocomplete="email">
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset class="insc-empresa">
+      <legend>Empresa / Establecimiento <em>(opcional)</em></legend>
+      <div class="insc-grid">
+        <label class="insc-field">
+          <span>Nombre o Razón Social</span>
+          <input type="text" name="empresa_nombre" maxlength="120" autocomplete="organization">
+        </label>
+        <label class="insc-field">
+          <span>NIT</span>
+          <input type="text" name="empresa_nit" maxlength="30">
+        </label>
+        <label class="insc-field">
+          <span>Dirección</span>
+          <input type="text" name="empresa_direccion" maxlength="150">
+        </label>
+        <label class="insc-field">
+          <span>Teléfono empresa</span>
+          <input type="tel" name="empresa_telefono" maxlength="20">
+        </label>
+        <label class="insc-field">
+          <span>Representante Legal</span>
+          <input type="text" name="empresa_representante" maxlength="120">
+        </label>
+        <label class="insc-field">
+          <span>Cédula Representante</span>
+          <input type="text" name="empresa_cedula_rep" maxlength="20">
+        </label>
+        <label class="insc-field">
+          <span>Correo empresa</span>
+          <input type="email" name="empresa_email" maxlength="120">
+        </label>
+      </div>
+    </fieldset>
+
+    <p class="insc-error" id="inscError" role="alert" hidden></p>
+    <button type="submit" class="btn-primary insc-submit">INSCRÍBETE AHORA</button>
+  </form>
+
+  <div class="insc-success" id="inscSuccess" hidden tabindex="-1">
+    <div class="insc-success-icon">✓</div>
+    <div class="section-label">Inscripción recibida</div>
+    <h3>¡BIENVENIDO(A) AL CLUSTER, <span id="inscSuccessName"></span>!</h3>
+    <p>Quedaste registrado en la comunidad de DJs más grande de Colombia. Te enviamos un correo de confirmación a <strong id="inscSuccessEmail"></strong>. Pronto te contactaremos con novedades, eventos y oportunidades.</p>
+    <button type="button" class="btn-outline" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Volver al inicio</button>
+  </div>
+</section>
+
+<span class="redline"></span>
+
 <!-- ══════════════ BOLSA DE TALENTO ══════════════ -->
 <section id="bolsa" class="bolsa" style="display:block; padding:5rem 4rem;">
   <div class="section-label">Directorio DJ</div>
@@ -436,201 +638,12 @@
   </div>
 </section>
 
-<!-- ══════════════ CTA + FORMULARIO DE INSCRIPCIÓN ══════════════ -->
-<div class="cta" id="inscripcion">
+<!-- ══════════════ CTA ══════════════ -->
+<div class="cta">
   <div class="section-label" style="margin-bottom:1rem;">¿Listo para el siguiente nivel?</div>
   <h2>INSCRÍBETE<br><span style="color:var(--red);">SIN COSTO</span></h2>
   <p>Únete a la primera comunidad DJ a nivel nacional y lleva tu carrera al siguiente nivel. Acceso gratuito a todos los beneficios desde el primer día.</p>
-
-  <form class="insc-form" id="inscForm">
-    <fieldset>
-      <legend>Datos personales</legend>
-      <div class="insc-grid">
-        <label class="insc-field">
-          <span>Tipo ID *</span>
-          <select name="tipo_identificacion" required>
-            <option value="" disabled selected>Selecciona…</option>
-            <option>CÉDULA</option>
-            <option>CÉDULA DE EXTRANJERÍA</option>
-            <option>PASAPORTE</option>
-          </select>
-        </label>
-        <label class="insc-field">
-          <span>Nº Identificación *</span>
-          <input type="text" name="numero_identificacion" required maxlength="20" autocomplete="off">
-        </label>
-        <label class="insc-field">
-          <span>Nombre *</span>
-          <input type="text" name="nombre" required maxlength="80" autocomplete="given-name">
-        </label>
-        <label class="insc-field">
-          <span>Apellidos *</span>
-          <input type="text" name="apellidos" required maxlength="80" autocomplete="family-name">
-        </label>
-        <label class="insc-field">
-          <span>Género *</span>
-          <select name="genero" required>
-            <option value="" disabled selected>Selecciona…</option>
-            <option>MASCULINO</option>
-            <option>FEMENINO</option>
-            <option>OTRO</option>
-            <option>NO SUMINISTRA</option>
-          </select>
-        </label>
-        <label class="insc-field">
-          <span>Profesión u Oficio *</span>
-          <select name="profesion" required>
-            <option value="" disabled selected>Selecciona…</option>
-            <option>ABOGADO(A)</option>
-            <option>ADMINISTRADOR</option>
-            <option>AGENTE TURÍSTICO</option>
-            <option>ANALISTA CARRERAS AFINES</option>
-            <option>ARQUITECTO(A)</option>
-            <option>ARTISTA</option>
-            <option>ASESOR(A)</option>
-            <option>ASISTENTE</option>
-            <option>BARISTA</option>
-            <option>BARTENDER</option>
-            <option>CAJERO(A)</option>
-            <option>CEO</option>
-            <option>CHEF</option>
-            <option>COCINERO(A)</option>
-            <option>CONSULTOR(A)</option>
-            <option>CONTADOR(A)</option>
-            <option>COORDINADOR(A)</option>
-            <option>DIRECTOR(A)</option>
-            <option>DISEÑADOR(A)</option>
-            <option>DJ</option>
-            <option>DOCENTE CARRERAS AFINES</option>
-            <option>EMPRESARIO(A)</option>
-            <option>ENTIDAD-GOBIERNO</option>
-            <option>ESTUDIANTE CARRERAS AFINES</option>
-            <option>GERENTE</option>
-            <option>GERENTE DE MARCA</option>
-            <option>GREMIO</option>
-            <option>INGENIERO(A)</option>
-            <option>INGENIERO(A) DE SONIDO</option>
-            <option>JEFE DE COMPRAS</option>
-            <option>MANAGER</option>
-            <option>MARKETING</option>
-            <option>MESERO(A)</option>
-            <option>MÚSICO</option>
-            <option>OPERADOR(A) LOGÍSTICO</option>
-            <option>ORGANIZADOR(A) DE EVENTOS</option>
-            <option>PERIODISTA</option>
-            <option>PRODUCTOR(A)</option>
-            <option>PROPIETARIO(A)</option>
-            <option>PROVEEDOR(A)</option>
-            <option>RECURSOS HUMANOS</option>
-            <option>RELACIONES PÚBLICAS</option>
-            <option>REPRESENTANTE LEGAL</option>
-            <option>SOMMELIER</option>
-            <option>TÉCNICO CARRERAS AFINES</option>
-            <option>TRADUCTOR</option>
-            <option>OTRO</option>
-            <option>NO SUMINISTRA</option>
-          </select>
-        </label>
-        <label class="insc-field">
-          <span>Departamento *</span>
-          <select name="departamento" required>
-            <option value="" disabled selected>Selecciona…</option>
-            <option>Amazonas</option>
-            <option>Antioquia</option>
-            <option>Arauca</option>
-            <option>Atlántico</option>
-            <option>Bolívar</option>
-            <option>Boyacá</option>
-            <option>Bogotá D.C.</option>
-            <option>Caldas</option>
-            <option>Caquetá</option>
-            <option>Casanare</option>
-            <option>Cauca</option>
-            <option>Cesar</option>
-            <option>Chocó</option>
-            <option>Córdoba</option>
-            <option>Cundinamarca</option>
-            <option>Guainía</option>
-            <option>Guaviare</option>
-            <option>Huila</option>
-            <option>La Guajira</option>
-            <option>Magdalena</option>
-            <option>Meta</option>
-            <option>Nariño</option>
-            <option>Norte de Santander</option>
-            <option>Putumayo</option>
-            <option>Quindío</option>
-            <option>Risaralda</option>
-            <option>San Andrés Providencia y Santa Catalina</option>
-            <option>Santander</option>
-            <option>Sucre</option>
-            <option>Tolima</option>
-            <option>Valle del Cauca</option>
-            <option>Vaupés</option>
-            <option>Vichada</option>
-            <option>Internacional</option>
-          </select>
-        </label>
-        <label class="insc-field">
-          <span>Ciudad *</span>
-          <input type="text" name="ciudad" required maxlength="80" autocomplete="address-level2">
-        </label>
-        <label class="insc-field">
-          <span>Teléfono celular *</span>
-          <input type="tel" name="telefono" required inputmode="numeric" pattern="[0-9]{10}" maxlength="10" title="Debe tener exactamente 10 dígitos numéricos" placeholder="3001234567" autocomplete="tel-national">
-        </label>
-        <label class="insc-field">
-          <span>Correo electrónico *</span>
-          <input type="email" name="email" required maxlength="120" autocomplete="email">
-        </label>
-      </div>
-    </fieldset>
-
-    <details class="insc-empresa">
-      <summary>Empresa / Establecimiento <em>(opcional)</em></summary>
-      <div class="insc-grid">
-        <label class="insc-field">
-          <span>Nombre o Razón Social</span>
-          <input type="text" name="empresa_nombre" maxlength="120" autocomplete="organization">
-        </label>
-        <label class="insc-field">
-          <span>NIT</span>
-          <input type="text" name="empresa_nit" maxlength="30">
-        </label>
-        <label class="insc-field">
-          <span>Dirección</span>
-          <input type="text" name="empresa_direccion" maxlength="150">
-        </label>
-        <label class="insc-field">
-          <span>Teléfono empresa</span>
-          <input type="tel" name="empresa_telefono" maxlength="20">
-        </label>
-        <label class="insc-field">
-          <span>Representante Legal</span>
-          <input type="text" name="empresa_representante" maxlength="120">
-        </label>
-        <label class="insc-field">
-          <span>Cédula Representante</span>
-          <input type="text" name="empresa_cedula_rep" maxlength="20">
-        </label>
-        <label class="insc-field">
-          <span>Correo empresa</span>
-          <input type="email" name="empresa_email" maxlength="120">
-        </label>
-      </div>
-    </details>
-
-    <p class="insc-error" id="inscError" role="alert" hidden></p>
-    <button type="submit" class="btn-primary insc-submit">INSCRÍBETE AHORA</button>
-  </form>
-
-  <div class="insc-success" id="inscSuccess" hidden tabindex="-1">
-    <div class="insc-success-icon">✓</div>
-    <div class="section-label">Inscripción recibida</div>
-    <h3>¡BIENVENIDO(A) AL CLUSTER, <span id="inscSuccessName"></span>!</h3>
-    <p>Quedaste registrado en la comunidad de DJs más grande de Colombia. Te enviamos un correo de confirmación a <strong id="inscSuccessEmail"></strong>. Pronto te contactaremos con novedades, eventos y oportunidades.</p>
-    <button type="button" class="btn-outline" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Volver al inicio</button>
-  </div>
+  <a href="#inscripcion" class="btn-primary" style="font-size:0.85rem; padding:1.1rem 3rem;">INSCRÍBETE AHORA</a>
 </div>
 
 <!-- ══════════════ FOOTER ══════════════ -->
