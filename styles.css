@@ -243,7 +243,7 @@ section { padding: 5rem 4rem; }
   border-top: 2px solid var(--red);
   border-bottom: 2px solid var(--red);
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
   min-height: 400px;
   overflow: hidden;
 }
@@ -1028,6 +1028,40 @@ footer {
 .ibiza-gallery {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 4px; margin-top: 1.5rem;
+}
+
+/* ── IBIZA: LA GIRA ── */
+.ibiza-trip {
+  grid-column: 1 / -1;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 3rem; align-items: center;
+  padding: 3rem 4rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  min-width: 0;
+}
+.ibiza-trip > *, .ibiza-trip-media > * { min-width: 0; }
+.ibiza-trip-head h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  line-height: 1.1; letter-spacing: 2px; margin-bottom: 1.5rem;
+}
+.ibiza-trip-media {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px; align-items: stretch;
+}
+.ibiza-trip-reel {
+  position: relative; aspect-ratio: 9 / 16;
+  border: 2px solid var(--red); overflow: hidden;
+}
+.ibiza-trip-reel iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+.gallery-item.ibiza-trip-photo { aspect-ratio: auto; }
+.ibiza-trip-photo img { position: absolute; inset: 0; }
+
+@media (max-width: 900px) {
+  .ibiza-trip { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
+  .ibiza-trip-media { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ibiza-trip-reel { grid-column: 1 / -1; max-width: 300px; width: 100%; margin: 0 auto; }
+  .gallery-item.ibiza-trip-photo { aspect-ratio: 3 / 4; }
 }
 
 /* ── GALLERY ITEMS ── */
