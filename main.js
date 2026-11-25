@@ -68,7 +68,69 @@ document.addEventListener('DOMContentLoaded', () => {
   const inscForm = document.getElementById('inscForm');
   if (inscForm) initInscripcion(inscForm);
 
+  /* ── 7. GALERÍAS DE BOOTCAMPS ── */
+  const bcModal = document.getElementById('bcModal');
+  if (bcModal) initBootcamps(bcModal);
+
 });
+
+function initBootcamps(overlay) {
+  const main = overlay.querySelector('.bc-main');
+  const counter = overlay.querySelector('.bc-counter');
+  const thumbs = overlay.querySelector('.bc-thumbs');
+  const text = overlay.querySelector('.bc-text');
+  let photos = [];
+  let index = 0;
+
+  const show = (i) => {
+    index = (i + photos.length) % photos.length;
+    main.src = photos[index];
+    counter.textContent = `${index + 1} / ${photos.length}`;
+    thumbs.querySelectorAll('button').forEach((b, j) => b.classList.toggle('active', j === index));
+    const active = thumbs.children[index];
+    if (active) active.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  };
+
+  const open = (id) => {
+    const detail = document.getElementById(`bootcamp-detail-${id}`);
+    if (!detail) return;
+    photos = detail.dataset.photos.trim().split(/\s+/);
+    text.innerHTML = detail.innerHTML;
+    main.alt = detail.querySelector('h3').textContent;
+    thumbs.innerHTML = '';
+    photos.forEach((src, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', `Ver foto ${i + 1}`);
+      b.innerHTML = `<img src="${src}" alt="" loading="lazy">`;
+      b.addEventListener('click', () => show(i));
+      thumbs.appendChild(b);
+    });
+    show(0);
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const close = () => {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    main.removeAttribute('src');
+  };
+
+  document.querySelectorAll('[data-bootcamp]').forEach(btn => {
+    btn.addEventListener('click', () => open(btn.dataset.bootcamp));
+  });
+  overlay.querySelector('.bc-prev').addEventListener('click', () => show(index - 1));
+  overlay.querySelector('.bc-next').addEventListener('click', () => show(index + 1));
+  overlay.querySelector('.bc-modal-close').addEventListener('click', close);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', (e) => {
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(index - 1);
+    if (e.key === 'ArrowRight') show(index + 1);
+  });
+}
 
 const SUPABASE_URL = 'https://pbqmkodwmntujezbokgo.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBicW1rb2R3bW50dWplemJva2dvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4NTQzOTIsImV4cCI6MjA4NjQzMDM5Mn0.C9sw9cix0J9Z2eTh-lr_4S6_gZmHIVwpzsxrZMCKl34';
