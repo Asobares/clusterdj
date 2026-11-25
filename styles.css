@@ -1105,18 +1105,8 @@ footer {
   font-size: 0.8rem; color: var(--gray); line-height: 1.9;
 }
 .expobar-destino {
-  display: flex; flex-direction: column; gap: 0.3rem;
-  background: var(--red); padding: 1rem 1.6rem;
-  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
-}
-.expobar-destino-label {
-  font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase;
-  color: rgba(255,255,255,0.75);
-}
-.expobar-destino-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.6rem, 3vw, 2.4rem); letter-spacing: 2px; line-height: 1;
-  color: var(--white);
+  width: 340px; max-width: 100%; height: auto;
+  mix-blend-mode: lighten; /* el JPG tiene fondo negro */
 }
 
 /* Banner EXPOBAR Fest 2026 (diseño de Asobares, namespace exf-) */
@@ -1222,7 +1212,7 @@ footer {
 @media (max-width:900px){
   .exf-banner .exf-hero-link{ aspect-ratio:16 / 6; }
   .expobar-intro { margin-top: -0.5rem; }
-  .expobar-destino { width: 100%; }
+  .expobar-destino { width: 280px; }
 }
 @media (max-width:760px){
   .exf-banner .exf-hero-link{ aspect-ratio:16 / 7.5; }
