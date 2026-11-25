@@ -1093,3 +1093,148 @@ footer {
   .sponsor-item:nth-child(n+6) { width: calc(100% / 2); }
   .sponsor-item:last-child { width: 100%; }
 }
+
+/* ── EXPOBAR FEST ── */
+.expobar { background: var(--bg); }
+.expobar-intro {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 1.5rem 3rem; margin: -1rem 0 2.5rem;
+}
+.expobar-intro p {
+  flex: 1 1 420px; max-width: 640px;
+  font-size: 0.8rem; color: var(--gray); line-height: 1.9;
+}
+.expobar-destino {
+  display: flex; flex-direction: column; gap: 0.3rem;
+  background: var(--red); padding: 1rem 1.6rem;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+}
+.expobar-destino-label {
+  font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+}
+.expobar-destino-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem); letter-spacing: 2px; line-height: 1;
+  color: var(--white);
+}
+
+/* Banner EXPOBAR Fest 2026 (diseño de Asobares, namespace exf-) */
+.exf-banner{
+  --exf-ink:#0d1013;
+  --exf-gold:#e6a94b;
+  --exf-gold-lite:#f6cf7e;
+  --exf-gold-deep:#a9621a;
+  --exf-text:#f4eee3;
+  --exf-muted:#b7ad9d;
+  position:relative; display:block; width:100%; margin:0 auto;
+  border-radius:18px; overflow:hidden;
+  background:var(--exf-ink);
+  box-shadow:0 22px 55px -22px rgba(0,0,0,.75), 0 0 0 1px rgba(230,169,75,.12);
+  font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.exf-banner .exf-hero-link{
+  display:block; position:relative; width:100%;
+  aspect-ratio:16 / 4.5; overflow:hidden; text-decoration:none; outline:none;
+}
+.exf-banner .exf-hero-img{
+  display:block; width:100%; height:100%;
+  object-fit:cover; object-position:center; border:0;
+  transition:transform .9s cubic-bezier(.2,.7,.2,1);
+}
+.exf-banner .exf-hero-link:hover .exf-hero-img{ transform:scale(1.025); }
+.exf-banner .exf-hero-fade{
+  position:absolute; inset:auto 0 -1px 0; height:34%;
+  background:linear-gradient(to bottom, rgba(13,16,19,0), var(--exf-ink) 92%);
+  pointer-events:none;
+}
+.exf-banner .exf-strip{
+  position:relative; display:flex; flex-wrap:wrap; align-items:center;
+  gap:16px 26px; padding:18px 26px 20px;
+  background:linear-gradient(180deg,var(--exf-ink),#0a0c0e);
+}
+.exf-banner .exf-strip::before{
+  content:""; position:absolute; top:0; left:26px; right:26px; height:2px;
+  background:linear-gradient(90deg,transparent,rgba(230,169,75,.7) 20%,rgba(246,207,126,.9) 50%,rgba(230,169,75,.7) 80%,transparent);
+  opacity:.8;
+}
+.exf-banner .exf-copy{ flex:1 1 300px; min-width:0; }
+.exf-banner .exf-eyebrow{
+  display:inline-flex; align-items:center; gap:9px;
+  font-size:11.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--exf-muted); margin:0 0 8px;
+}
+.exf-banner .exf-mark{
+  display:inline-block; width:4px; height:15px; border-radius:2px;
+  background:linear-gradient(180deg,var(--exf-gold-lite),var(--exf-gold-deep));
+  box-shadow:0 0 10px rgba(230,169,75,.55);
+}
+.exf-banner .exf-headline{
+  margin:0; font-family:'Bebas Neue',sans-serif; font-weight:400;
+  font-size:clamp(24px,3.4vw,40px); line-height:.98; letter-spacing:.01em;
+  color:var(--exf-text); text-wrap:balance;
+}
+.exf-banner .exf-headline b{ color:var(--exf-gold-lite); font-weight:400; }
+.exf-banner .exf-sedes{ display:flex; flex-wrap:wrap; gap:12px; }
+.exf-banner .exf-sede{
+  display:flex; flex-direction:column; gap:3px; padding:11px 15px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(230,169,75,.24); border-left:3px solid var(--exf-gold);
+  border-radius:11px;
+}
+.exf-banner .exf-sede-city{
+  font-size:10.5px; font-weight:700; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--exf-muted);
+}
+.exf-banner .exf-sede-date{
+  font-family:'Bebas Neue',sans-serif; font-size:25px; line-height:.9;
+  letter-spacing:.02em; color:var(--exf-text);
+}
+.exf-banner .exf-sede-desc{ font-style:italic; font-size:12px; font-weight:500; color:var(--exf-muted); }
+.exf-banner .exf-cta{
+  flex:none; display:inline-flex; align-items:center; gap:10px;
+  padding:15px 26px; font-size:14px; font-weight:800;
+  letter-spacing:.04em; text-transform:uppercase; text-decoration:none;
+  color:#1a1204;
+  background:linear-gradient(180deg,var(--exf-gold-lite),var(--exf-gold) 52%,var(--exf-gold-deep));
+  border:0; border-radius:12px;
+  box-shadow:0 12px 26px -10px rgba(230,169,75,.6), inset 0 1px 0 rgba(255,255,255,.4);
+  position:relative; overflow:hidden; white-space:nowrap;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.exf-banner .exf-cta:hover,
+.exf-banner .exf-cta:focus-visible{
+  transform:translateY(-2px);
+  box-shadow:0 18px 34px -12px rgba(230,169,75,.75), inset 0 1px 0 rgba(255,255,255,.5);
+}
+.exf-banner .exf-cta:focus-visible{ outline:3px solid rgba(246,207,126,.55); outline-offset:3px; }
+.exf-banner .exf-cta .exf-arrow{ transition:transform .2s ease; font-weight:700; }
+.exf-banner .exf-cta:hover .exf-arrow{ transform:translateX(4px); }
+.exf-banner .exf-cta::after{
+  content:""; position:absolute; top:0; left:-120%; width:60%; height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);
+  transform:skewX(-18deg);
+  animation:exf-sheen 4.5s ease-in-out infinite;
+}
+@keyframes exf-sheen{ 0%,72%{ left:-120%; } 88%{ left:150%; } 100%{ left:150%; } }
+
+@media (max-width:900px){
+  .exf-banner .exf-hero-link{ aspect-ratio:16 / 6; }
+  .expobar-intro { margin-top: -0.5rem; }
+  .expobar-destino { width: 100%; }
+}
+@media (max-width:760px){
+  .exf-banner .exf-hero-link{ aspect-ratio:16 / 7.5; }
+  .exf-banner .exf-strip{ flex-direction:column; align-items:stretch; gap:18px; padding:20px 20px 22px; }
+  .exf-banner .exf-copy{ flex:0 0 auto; }
+  .exf-banner .exf-cta{ width:100%; justify-content:center; }
+  .exf-banner .exf-strip::before{ left:20px; right:20px; }
+}
+@media (max-width:460px){
+  .exf-banner .exf-hero-link{ aspect-ratio:16 / 9; }
+}
+@media (prefers-reduced-motion:reduce){
+  .exf-banner .exf-cta::after,
+  .exf-banner .exf-hero-img{ animation:none; transition:none; transform:none; }
+}
